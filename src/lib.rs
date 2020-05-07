@@ -170,7 +170,7 @@ mod select;
 ///     &json!({"name": "친구1", "age": 20})
 /// ]);
 /// ```
-pub fn compile(path: &str) -> impl FnMut(&Value) -> Result<Vec<&Value>, JsonPathError> {
+pub fn compile(path: &str) -> impl Fn(&Value) -> Result<Vec<&Value>, JsonPathError> {
     let node = parser::Parser::compile(path);
     move |json| match &node {
         Ok(node) => {
