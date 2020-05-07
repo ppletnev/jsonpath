@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-use std::fmt;
+use std::{error, fmt};
 
 use serde_json::{Number, Value};
 use serde_json::map::Entry;
@@ -60,6 +60,8 @@ impl fmt::Display for JsonPathError {
         }
     }
 }
+
+impl error::Error for JsonPathError {}
 
 #[derive(Debug, Default)]
 struct FilterTerms<'a>(Vec<Option<ExprTerm<'a>>>);
